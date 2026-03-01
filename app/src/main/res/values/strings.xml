@@ -1,3 +1,28 @@
 <resources>
-    <string name="app_name">lab_9</string>
+    <string name="app_name">Game Catalog</string>
+
+    <string name="game1">Warframe</string>
+    <string name="game2">Warthunder</string>
+    <string name="game3">Rogue Trader</string>
+    <string name="game4">Mewgenics</string>
+    <string name="game5">Overwatch</string>
+    <string name="game6">Children of Morta</string>
+    <string name="game7">Factorio</string>
+    <string name="game8">Witcher 3</string>
+    <string name="game9">Клеть</string>
+    <string name="game10">Overlooting</string>
+
+    <string name="game1_description">Warframe — бесплатная кооперативная компьютерная игра с видом от третьего лица в жанре лутер-шутер. Игрок управляет представителем расы Тэнно — древним воином, который проснулся от векового анабиоза для новых войн.</string>
+    <string name="game2_description">Компьютерная многопользовательская онлайн-игра с элементами симулятора, посвящённая боевой авиации, боевым вертолётам, бронетехнике и флоту довоенного периода, а также Второй мировой войны и послевоенного периода.</string>
+    <string name="game3_description">Warhammer 40,000: Rogue Trader — компьютерная ролевая игра по вселенной Warhammer 40,000, разработанная студией Owlcat Games.</string>
+    <string name="game4_description">Mewgenics — тактическая ролевая игра с элементами roguelike и симулятора жизни.</string>
+    <string name="game5_description">Overwatch — многопользовательская компьютерная игра в жанре геройского шутера от первого лица.</string>
+    <string name="game6_description">Children of Morta — action-RPG с подходом к развитию персонажей в стиле rogue-lite. Игра рассказывает о семье Бергсонов, которые пытаются противостоять наступающей Скверне.</string>
+    <string name="game7_description">Factorio — компьютерная игра в жанре симулятора строительства и управления, разрабатываемая независимой чешской студией Wube Software.</string>
+    <string name="game8_description">Третья игра одноимённой серии, а также заключительная часть трилогии. Разработана польской компанией CD Projekt RED по мотивам серии романов «Ведьмак» польского писателя Анджея Сапковского.</string>
+    <string name="game9_description">Кооперативный экшен-хоррор от создателей игры «Кужлёвка». По сюжету игроки пытаются выжить в Гигахрущёвке, катаясь на живом и прожорливом лифте.</string>
+    <string name="game10_description">Игра объединяет альянс трёх персонажей против разлагающей тёмной силы. В группу входят Максимилиан, герой из знатного рода, Лиз, разыскиваемая во многих странах воровка, и Тень — загадочное существо, ранее считавшееся источником порчи.</string>
+
+    <string name="previous">Назад</string>
+    <string name="next">Вперёд</string>
 </resources>
