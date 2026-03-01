@@ -4,17 +4,13 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
@@ -31,9 +27,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             Lab_9Theme {
-                // Показываем только первую игру (статически)
-                val games = Datasource().loadGameList()
-                GameCard(game = games[0])
+                GameCatalogApp()
             }
         }
     }
@@ -45,9 +39,7 @@ fun GameCard(
     modifier: Modifier = Modifier
 ) {
     Surface(
-        modifier = modifier
-            .fillMaxSize()
-            .padding(16.dp),
+        modifier = modifier,
         shape = RoundedCornerShape(16.dp),
         shadowElevation = 8.dp
     ) {
@@ -78,20 +70,83 @@ fun GameCard(
                 style = MaterialTheme.typography.bodyLarge,
                 modifier = Modifier.padding(horizontal = 16.dp)
             )
+
+            Spacer(modifier = Modifier.height(16.dp))
         }
+    }
+}
+
+@Composable
+fun NavigationButtons(
+    onPreviousClick: () -> Unit,
+    onNextClick: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    Row(
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(16.dp),
+        horizontalArrangement = Arrangement.SpaceEvenly
+    ) {
+        Button(
+            onClick = onPreviousClick,
+            modifier = Modifier.weight(1f)
+        ) {
+            Text(stringResource(R.string.previous))
+        }
+
+        Spacer(modifier = Modifier.width(16.dp))
+
+        Button(
+            onClick = onNextClick,
+            modifier = Modifier.weight(1f)
+        ) {
+            Text(stringResource(R.string.next))
+        }
+    }
+}
+
+@Composable
+fun GameCatalogApp() {
+    val games = remember { Datasource().loadGameList() }
+    var currentIndex by remember { mutableStateOf(0) }
+
+    fun nextGame() {
+        currentIndex = (currentIndex + 1) % games.size
+    }
+
+    fun previousGame() {
+        currentIndex = if (currentIndex > 0) currentIndex - 1 else games.size - 1
+    }
+
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        GameCard(
+            game = games[currentIndex],
+            modifier = Modifier.weight(1f)
+        )
+
+        // Индикатор текущей позиции
+        Text(
+            text = "${currentIndex + 1} / ${games.size}",
+            modifier = Modifier.padding(8.dp)
+        )
+
+        NavigationButtons(
+            onPreviousClick = ::previousGame,
+            onNextClick = ::nextGame
+        )
     }
 }
 
 @Preview(showBackground = true)
 @Composable
-fun GameCardPreview() {
+fun GameCatalogAppPreview() {
     Lab_9Theme {
-        GameCard(
-            Game(
-                R.string.game1,
-                R.string.game1_description,
-                R.drawable.game1
-            )
-        )
+        GameCatalogApp()
     }
 }
